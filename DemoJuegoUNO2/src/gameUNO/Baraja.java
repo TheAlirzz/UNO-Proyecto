@@ -46,18 +46,18 @@ public class Baraja {
 	
 	// Devueve la primera carta de mazoRobar si hay cartas dentro sino devuelve null
 	public Carta robarCarta() {
+		if (mazoRobar.isEmpty()) reconstruirMazoRobar();
 		return mazoRobar.isEmpty() ? mazoRobar.remove(0) : null;
 	}
 	
 	// Añade una carta al mazoDescartar
-	void agregarDescarte(Carta carta) {
-		if (mazoRobar.isEmpty()) reconstruirMazoRobar();
+	public void agregarDescarte(Carta carta) {
 		mazoDescartar.add(carta);
 	}
 	
 	// Reconstruye el mazoRobar cuando se acaban las cartas de robar
-	void reconstruirMazoRobar() {
-		if(mazoDescartar.size() >= 1) {
+	public void reconstruirMazoRobar() {
+		if(mazoDescartar.size() > 1) {
 			Carta ultimaCarta = mazoDescartar.remove(mazoDescartar.size() - 1);
 			mazoRobar.addAll(mazoDescartar);
 			mazoDescartar.clear();
@@ -66,4 +66,8 @@ public class Baraja {
 		}
 	}
 	
+	// Obtiene la ultima carta jugada en el mazo de descartes
+	public Carta obtenerUltimaCarta() {
+		return mazoDescartar.isEmpty() ? null : mazoDescartar.getLast();
+	}
 }
