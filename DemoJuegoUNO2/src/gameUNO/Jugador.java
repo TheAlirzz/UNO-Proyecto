@@ -36,13 +36,16 @@ public class Jugador {
 		dijoUNO = true;
 	}
 	
-	// Devuelve true si el jugador jugó todas sus cartas y devuelve false si el jugador aún tiene cartas
+	// Devuelve true si al jugador aun le quedan cartas en su mano y devulve false si al jugador ya no le quedan cartas en su mano
 	public boolean tieneCartas() {
-		return mano.isEmpty();
+		return !mano.isEmpty();
 	}
 	
+	// Devuelve los puntos de una mano
 	public int calcularPuntosMano() {
-		
+		int total = 0;
+		for (Carta carta : mano) total += carta.getValor();
+		return total;
 	}
 
 }
