@@ -12,19 +12,19 @@ public class Baraja {
 		this.mazoRobar = new ArrayList<Carta>();
 		this.mazoDescartar = new ArrayList<>();
 		inicializarBaraja();
-		barajar();
+		//barajar();
 	}
 	
 	// Crea el la baraja de juego con todas sus cartas
 	void inicializarBaraja() {
-		TipoCarta tipos = null;
 		String[] colores = {
 			"Azul", "Verde", "Amarillo", "Rojo"	
 		};
 		for (String color : colores) {
-			for (int i = 0; i <= 9; i++) {
+			mazoRobar.add(new Carta(color, TipoCarta.NUMERICA, 0));
+			for (int i = 1; i <= 9; i++) {
 				mazoRobar.add(new Carta(color, TipoCarta.NUMERICA, i));
-				if(i != 0) mazoRobar.add(new Carta(color, TipoCarta.NUMERICA, i));
+				mazoRobar.add(new Carta(color, TipoCarta.NUMERICA, i));
 			}
 			mazoRobar.add(new Carta(color, TipoCarta.SALTO_TURNO, 20));
 			mazoRobar.add(new Carta(color, TipoCarta.SALTO_TURNO, 20));
@@ -37,6 +37,10 @@ public class Baraja {
 			mazoRobar.add(new Carta("Negro", TipoCarta.COMODIN, 50));
 			mazoRobar.add(new Carta("Negro", TipoCarta.COMODIN_TOMA_CUATRO, 50));
 		}
+	}
+	public static void main(String[] args) {
+		Baraja baraja = new Baraja();
+		System.out.println(baraja.mazoRobar);
 	}
 	
 	// Baraja el mazo de cartas
