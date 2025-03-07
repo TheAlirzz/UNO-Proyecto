@@ -26,7 +26,7 @@ public class Carta {
 	// Metodo que devuelve informacion de una carta
 	@Override
 	public String toString() {
-		return "Carta " + color + ", " + tipo + ", " + valor;
+		return "[ Carta " + color + ", " + tipo + ", " + valor + " ]";
 	}
 	
 	// Metodos getters

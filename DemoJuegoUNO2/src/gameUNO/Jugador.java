@@ -20,7 +20,7 @@ public class Jugador {
 	public void recibirCarta(Carta carta) {
 		mano.add(carta);
 	}
-	
+
 	// Cuando el jugador intente jugar una carta si es válida devolverá true, si no lo es devolverá false
 	public boolean jugarCarta(int indice, Baraja baraja, Mesa mesa) {
 		if (indice >= 0 && indice < mano.size()) {
@@ -46,6 +46,19 @@ public class Jugador {
 		int total = 0;
 		for (Carta carta : mano) total += carta.getValor();
 		return total;
+	}
+	
+	// Metodos getters para nombre, mano y puntos
+	public String getNombre() {
+		return nombre;
+	}
+
+	public ArrayList<Carta> getMano() {
+		return mano;
+	}
+
+	public int getPuntos() {
+		return puntos;
 	}
 
 }
