@@ -36,7 +36,7 @@ public class Carta {
 	public TipoCarta getTipo() {
 		return tipo;
 	}
-	public int valor() {
+	public int getValor() {
 		return valor;
 	}
 	
