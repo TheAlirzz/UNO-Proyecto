@@ -1,0 +1,3 @@
+INDEX VERSION 1.134+C:\Users\User\Desktop\Proyecto UNO\UNO-Proyecto\.metadata\.plugins\org.eclipse.jdt.core
+1528975692.index
+3957108945.index
