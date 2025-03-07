@@ -14,8 +14,8 @@ public class Carta {
 	}
 	
 	// Devuelve true si la carta se puede jugar
-	boolean esJugable(Carta otra) {
-		return this.color.equals(otra.color) || this.tipo == otra.tipo || this.tipo == TipoCarta.COMODIN || this.tipo == TipoCarta.COMODIN_TOMA_CUATRO;
+	boolean esJugable(Carta otraCarta) {
+		return this.color.equals(otraCarta.color) || this.tipo == otraCarta.tipo || this.tipo == TipoCarta.COMODIN || this.tipo == TipoCarta.COMODIN_TOMA_CUATRO;
 	}
 	
 	// Devuelve true si es la carta es un comodin

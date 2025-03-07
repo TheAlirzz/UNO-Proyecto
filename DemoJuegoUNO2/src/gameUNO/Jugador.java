@@ -61,4 +61,8 @@ public class Jugador {
 		return puntos;
 	}
 
+	public boolean isDijoUNO() {
+		return dijoUNO;
+	}
+
 }
