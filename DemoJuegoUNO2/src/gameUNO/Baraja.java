@@ -10,13 +10,13 @@ public class Baraja {
 	
 	public Baraja() {
 		this.mazoRobar = new ArrayList<Carta>();
-		this.mazoDescartar = new ArrayList<>();
+		this.mazoDescartar = new ArrayList<Carta>();
 		inicializarBaraja();
-		//barajar();
+		barajar();
 	}
 	
 	// Crea el la baraja de juego con todas sus cartas
-	void inicializarBaraja() {
+	private void inicializarBaraja() {
 		String[] colores = {
 			"Azul", "Verde", "Amarillo", "Rojo"	
 		};
@@ -38,10 +38,6 @@ public class Baraja {
 			mazoRobar.add(new Carta("Negro", TipoCarta.COMODIN_TOMA_CUATRO, 50));
 		}
 	}
-	public static void main(String[] args) {
-		Baraja baraja = new Baraja();
-		System.out.println(baraja.mazoRobar);
-	}
 	
 	// Baraja el mazo de cartas
 	public void barajar() {
@@ -51,7 +47,7 @@ public class Baraja {
 	// Devueve la primera carta de mazoRobar si hay cartas dentro sino devuelve null
 	public Carta robarCarta() {
 		if (mazoRobar.isEmpty()) reconstruirMazoRobar();
-		return mazoRobar.isEmpty() ? mazoRobar.remove(0) : null;
+		return mazoRobar.isEmpty() ? null : mazoRobar.remove(0) ;
 	}
 	
 	// Añade una carta al mazoDescartar
@@ -71,7 +67,8 @@ public class Baraja {
 	}
 	
 	// Obtiene la ultima carta jugada en el mazo de descartes
-	public Carta obtenerUltimaCarta() {
-		return mazoDescartar.isEmpty() ? null : mazoDescartar.getLast();
+	public Carta obtenerUltimaCartaDescartada() {
+		return mazoDescartar.isEmpty() ? null : mazoDescartar.get(mazoDescartar.size() - 1);
 	}
+	
 }
