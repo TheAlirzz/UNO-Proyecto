@@ -1,7 +1,8 @@
 package gameUNO;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Mesa {
 
@@ -9,12 +10,14 @@ public class Mesa {
 	private Baraja baraja;
 	private int turnoActual;
 	private boolean sentidoHorario;
+	private String colorActual;
 	
 	public Mesa(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
 		this.baraja = new Baraja();
 		this.turnoActual = 0;
 		this.sentidoHorario = true;
+		this.colorActual = baraja.obtenerUltimaCartaDescartada().getColor();
 	}
 	
 	// Avanza al siguiente turno
@@ -30,6 +33,7 @@ public class Mesa {
 			siguienteTurno();
 			jugadores.get(turnoActual).recibirCarta(baraja.robarCarta());
 			jugadores.get(turnoActual).recibirCarta(baraja.robarCarta());
+			siguienteTurno();
 			break;
 		case REVERSA:
 			sentidoHorario = !sentidoHorario;
@@ -37,7 +41,11 @@ public class Mesa {
 		case SALTO_TURNO:
 			siguienteTurno();
 			break;
+		case COMODIN:
+			seleccionarNuevoColor();
+			break;
 		case COMODIN_TOMA_CUATRO:
+			seleccionarNuevoColor();
 			for(int i = 0; i < 4; i++) {
 				jugadores.get(turnoActual).recibirCarta(baraja.robarCarta());
 			}
@@ -46,6 +54,22 @@ public class Mesa {
 			break;
 		}
 	}
+	
+	private void seleccionarNuevoColor() {
+        String[] opciones = {"Rojo", "Azul", "Verde", "Amarillo"};
+        String nuevoColor = (String) JOptionPane.showInputDialog(
+                null,
+                "Selecciona un color:",
+                "Cambio de Color",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+        );
+        if (nuevoColor != null) {
+            colorActual = nuevoColor;
+        }
+    }
 	
 	// Retorna el jugador en su turno
 	public Jugador obtenerJugadorActual() {
@@ -74,5 +98,15 @@ public class Mesa {
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
+	
+	public Carta obtenerUltimaCartaDescartada() {
+	    return baraja.obtenerUltimaCartaDescartada();
+	}
+
+	public Baraja getBaraja() {
+		return baraja;
+	}
+
+	
 	
 }

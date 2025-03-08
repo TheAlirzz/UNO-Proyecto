@@ -14,12 +14,12 @@ public class Carta {
 	}
 	
 	// Devuelve true si la carta se puede jugar
-	boolean esJugable(Carta otraCarta) {
+	public boolean esJugable(Carta otraCarta) {
 		return this.color.equals(otraCarta.color) || this.tipo == otraCarta.tipo || this.tipo == TipoCarta.COMODIN || this.tipo == TipoCarta.COMODIN_TOMA_CUATRO;
 	}
 	
 	// Devuelve true si es la carta es un comodin
-	boolean esComodin() {
+	public boolean esComodin() {
 		return this.tipo == tipo.COMODIN || this.tipo == tipo.COMODIN_TOMA_CUATRO;
 	}
 

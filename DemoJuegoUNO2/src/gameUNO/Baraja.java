@@ -10,13 +10,13 @@ public class Baraja {
 	
 	public Baraja() {
 		this.mazoRobar = new ArrayList<Carta>();
-		this.mazoDescartar = new ArrayList<>();
+		this.mazoDescartar = new ArrayList<Carta>();
 		inicializarBaraja();
 		barajar();
 	}
 	
 	// Crea el la baraja de juego con todas sus cartas
-	void inicializarBaraja() {
+	private void inicializarBaraja() {
 		String[] colores = {
 			"Azul", "Verde", "Amarillo", "Rojo"	
 		};
@@ -67,7 +67,8 @@ public class Baraja {
 	}
 	
 	// Obtiene la ultima carta jugada en el mazo de descartes
-	public Carta obtenerUltimaCarta() {
+	public Carta obtenerUltimaCartaDescartada() {
 		return mazoDescartar.isEmpty() ? null : mazoDescartar.get(mazoDescartar.size() - 1);
 	}
+	
 }

@@ -1,11 +1,12 @@
 package gameUNO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
 	
 	private String nombre;
-	private ArrayList<Carta> mano;
+	private List<Carta> mano;
 	private int puntos;
 	private boolean dijoUNO;
 	
@@ -22,14 +23,17 @@ public class Jugador {
 	}
 
 	// Cuando el jugador intente jugar una carta si es válida devolverá true, si no lo es devolverá false
-	public boolean jugarCarta(int indice, Baraja baraja, Mesa mesa) {
-		if (indice >= 0 && indice < mano.size()) {
-			Carta cartaJugada = mano.remove(indice);
-			baraja.agregarDescarte(cartaJugada);
-			return true;
-		}
-		return false;
-	}
+	public boolean jugarCarta(int indice, Baraja baraja) {
+        if (indice >= 0 && indice < mano.size()) {
+            Carta carta = mano.get(indice);
+            if (carta.esJugable(baraja.obtenerUltimaCartaDescartada())) {
+                mano.remove(indice);
+                baraja.agregarDescarte(carta);
+                return true;
+            }
+        }
+        return false;
+    }
 	
 	// Se llama este método cuando le jugador dice uno y la variable dijoUNO se pone en true
 	public void decirUno() {
@@ -42,10 +46,8 @@ public class Jugador {
 	}
 	
 	// Devuelve los puntos de una mano
-	public int calcularPuntosMano() {
-		int total = 0;
-		for (Carta carta : mano) total += carta.getValor();
-		return total;
+	public void sumarPuntos(int puntosGanados) {
+		this.puntos += puntosGanados;
 	}
 	
 	// Metodos getters para nombre, mano y puntos
@@ -53,7 +55,7 @@ public class Jugador {
 		return nombre;
 	}
 
-	public ArrayList<Carta> getMano() {
+	public List<Carta> getMano() {
 		return mano;
 	}
 

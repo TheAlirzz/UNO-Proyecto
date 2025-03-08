@@ -17,7 +17,7 @@ public class Juego {
 		List<Jugador> jugadores = new ArrayList<Jugador>();
 		
 		for (int i = 0; i < numJugadores; i++) {
-				if(bots[i]) jugadores.add(new Bot("Chinchon " + (i + 1)));
+				if(bots[i]) jugadores.add(new Bot("Bot " + (i + 1)));
 				else {
 					String nombreJugador;
 					nombreJugador = JOptionPane.showInputDialog(null, "Ingrese su nombre de jugador:", "Nombre de jugador:", JOptionPane.PLAIN_MESSAGE);
@@ -27,6 +27,36 @@ public class Juego {
 		}
 		this.mesa = new Mesa(jugadores);
 	}
+	
+	public void jugarTurno() {
+        Jugador jugadorActual = obtenerJugadorActual();
+
+        if (jugadorActual instanceof Bot) {
+            ((Bot) jugadorActual).tomarDecision(mesa.getBaraja());
+        }
+
+        if (mesa.partidaTerminada()) {
+            finalizarPartida();
+        } else {
+            mesa.siguienteTurno();
+        }
+    }
+	
+	private void finalizarPartida() {
+        juegoActivo = false;
+        calcularPuntajes();
+        System.out.println("La partida ha finalizado.");
+    }
+	
+	private void calcularPuntajes() {
+        for (Jugador jugador : mesa.getJugadores()) {
+            int puntos = 0;
+            for (Carta carta : jugador.getMano()) {
+                puntos += carta.getValor();
+            }
+            jugador.sumarPuntos(puntos);
+        }
+    }
 	
 	public void iniciarJuego() {
 		while(juegoActivo) {
@@ -54,6 +84,15 @@ public class Juego {
 		}
 		return false;
 	}
+
+	public Jugador obtenerJugadorActual() {
+	    return mesa.obtenerJugadorActual();
+	}
+
+	public Mesa getMesa() {
+	    return mesa;
+	}
+
 	
 	
 
